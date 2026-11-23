@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mahmud Shourov Photography</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=Hind+Siliguri:wght@500&display=swap" rel="stylesheet">
+<style>
+/* VOICE occasion, hushed: a photographer's book, the pictures do the talking
+   IDEA a monsoon-season photo book with margin notes; Google's own comments pinned beside the prints like gallery wall labels
+   PICTURE his edited frames: full-bleed river-launch opener, then a wall of prints each with Google's comment as its label
+   COLOUR near-black #0b0a0f ground, soft white ink, one violet accent #a78bfa used sparingly; no other colour but the photographs
+   TYPE Familjen Grotesk 600 display + Inter text
+   LAYOUT laptop: photo fills first screen, name in its lower-left; prints in two staggered columns; phone: single column */
+:root{color-scheme:dark;--bg:#0b0a0f;--bg2:#131119;--ink:#eeedf3;--dim:#9c99ab;--moss:#6e6a82;--red:#a78bfa;--rule:#221f2b}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:64px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:"Familjen Grotesk",Inter,sans-serif;font-weight:600;letter-spacing:-.02em;line-height:1.05;margin:0;text-wrap:balance}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:max(5vw,16px)}
+nav{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;flex-wrap:wrap;gap:4px 22px;align-items:center;justify-content:space-between;padding:12px max(5vw,16px);background:#0b0a0fb8;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+nav b{font-family:"Familjen Grotesk",sans-serif;font-size:17px;font-weight:600}
+nav div{display:flex;flex-wrap:wrap;gap:2px 20px}
+nav a{text-decoration:none;font-size:15px;color:var(--dim);padding:8px 0}
+nav a:hover,nav a:focus-visible{color:var(--ink)}
+.hero{position:relative;height:min(100svh,940px);min-height:520px;overflow:hidden}
+.slides{position:absolute;inset:0}
+.slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.6s ease}
+.slides img.on{opacity:1}
+.dots{display:flex;gap:6px;margin-top:22px}
+.dots button{width:28px;height:44px;padding:0;border:0;background:none;cursor:pointer;display:grid;align-items:center}
+.dots button::before{content:"";display:block;height:2px;background:#ffffff55}
+.dots button[aria-current=true]::before{background:#fff}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0b0a0f00 45%,#0b0a0fe6 100%)}
+.hero .cap{position:absolute;left:max(5vw,16px);right:max(5vw,16px);bottom:clamp(28px,6vh,64px);z-index:2;max-width:760px}
+.hero h1{font-size:clamp(44px,6vw,76px)}
+.hero p{font-size:clamp(17px,2vw,21px);margin:14px 0 0;color:#e4e6df;max-width:38ch}
+.hero .ex{position:absolute;right:max(5vw,16px);bottom:clamp(28px,6vh,64px);z-index:2;font-size:13px;color:#d3d8d4;text-align:right;max-width:30ch}
+.lede{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);padding-block:clamp(48px,7vw,96px);align-items:end}
+.lede h2{font-size:clamp(32px,4vw,48px)}
+.lede p{margin:0;color:var(--dim);font-size:17px;max-width:60ch}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(9em,1fr));gap:18px 28px;margin-top:26px}
+.facts div{border-top:1px solid var(--rule);padding-top:10px}
+.facts b{display:block;font-family:"Familjen Grotesk",sans-serif;font-size:clamp(28px,3vw,36px);font-weight:600;line-height:1.1;white-space:nowrap}
+.facts span{font-size:14px;color:var(--dim)}
+.sec{padding-block:clamp(36px,5vw,72px);border-top:1px solid var(--rule)}
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:12px 48px;align-items:end;margin-bottom:32px}
+.head h2{font-size:clamp(34px,4.4vw,56px)}
+.head p{margin:0;color:var(--dim);max-width:58ch}
+.wall{columns:2;column-gap:clamp(16px,2.4vw,32px)}
+.print{break-inside:avoid;margin:0 0 clamp(20px,3vw,40px)}
+.print button{display:block;width:100%;padding:0;border:0;background:var(--bg2);cursor:zoom-in;overflow:hidden}
+.print img{width:100%;height:auto;transition:transform .6s ease}
+.print button:hover img,.print button:focus-visible img{transform:scale(1.02)}
+.print button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.label{display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;padding:16px 2px 0}
+.av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:#1d1a26;color:var(--ink);border:1px solid var(--rule);font:700 13px/1 Inter,sans-serif}
+.av.mbg{font-size:16px}
+.who{font-weight:600;font-size:15px;display:flex;align-items:center;gap:6px}
+.who svg{flex:none}
+.q{font-family:"Familjen Grotesk",sans-serif;font-size:clamp(19px,1.8vw,23px);line-height:1.25;margin:4px 0 8px;letter-spacing:-.01em}
+.meta{font-size:13px;color:var(--dim);display:flex;flex-wrap:wrap;gap:2px 12px}
+.meta i{font-style:normal;color:var(--ink)}
+.bn{font-family:"Hind Siliguri",Inter,sans-serif}
+.gshow{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);gap:clamp(28px,6vw,96px);align-items:center}
+.pm{width:min(340px,82vw);justify-self:center}
+.pm-body{position:relative;background:#050507;border:1px solid #2b2836;border-radius:38px;padding:12px;box-shadow:0 30px 60px -30px #000}
+.pm-cam{position:absolute;left:30px;top:24px;width:11px;height:11px;border-radius:50%;background:#000;border:1px solid #333;z-index:3}
+.pm-scr{background:#000;border-radius:28px;overflow:hidden;padding-top:38px;padding-bottom:14px}
+.pm-top{display:flex;gap:10px;align-items:center;padding:0 12px 10px}
+.pm-top b{display:block;font-size:13px}
+.pm-top small{display:block;font-size:12px;color:var(--dim)}
+.pm-av{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#1d1a26;border:1px solid var(--rule);font:700 12px/1 Inter,sans-serif;color:var(--ink)}
+.pm-img{position:relative;display:block;width:100%;aspect-ratio:4/5;padding:0;border:0;background:#111;cursor:zoom-in}
+.pm-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease}
+.pm-img img.on{opacity:1}
+.pm-cmt{display:flex;gap:10px;padding:12px 12px 0;min-height:84px}
+.pm-cmt p{margin:0;font-size:13px;line-height:1.4}
+.gq{font-family:"Familjen Grotesk",sans-serif;font-size:clamp(26px,3.4vw,44px);line-height:1.12;letter-spacing:-.02em;margin:0 0 16px;text-wrap:balance}
+.gmeta{color:var(--dim);margin:0 0 28px;font-size:15px}
+.gctl{display:flex;align-items:center;gap:14px;color:var(--dim);font-size:14px}
+.gctl button{width:44px;height:44px;border:1px solid var(--rule);background:none;color:var(--ink);font-size:20px;cursor:pointer}
+.gctl button:hover,.gctl button:focus-visible{border-color:var(--red);color:var(--red)}
+.scrn{animation:flick 3.4s steps(1) infinite}
+.glitch{animation:band 3.4s steps(1) infinite}
+@keyframes flick{0%{opacity:1}6%{opacity:.35}8%{opacity:1}31%{opacity:.85}33%{opacity:1}52%{opacity:.15}54%{opacity:.9}56%{opacity:.4}58%{opacity:1}81%{opacity:.7}83%{opacity:1}}
+@keyframes band{0%{opacity:0}6%{opacity:.8;transform:translateY(0)}8%{opacity:0}52%{opacity:.9;transform:translateY(120px)}56%{opacity:.6;transform:translateY(40px)}58%{opacity:0}}
+@media(max-width:760px){.gshow{grid-template-columns:minmax(0,1fr)}}
+.astro{background:#0e0b16;border-block:1px solid #1f1a2c}
+.astro .head p{color:#a6a0bd}
+.jrow{display:flex;gap:8px;margin-bottom:8px}
+.jrow button{flex:none;padding:0;border:0;background:var(--bg2);cursor:zoom-in;overflow:hidden;position:relative}
+.jrow img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.jrow button:hover img,.jrow button:focus-visible img{transform:scale(1.03)}
+.jrow button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.jrow time{position:absolute;left:8px;bottom:6px;font-size:12px;color:#fff;background:#0008;padding:1px 6px;opacity:0;transition:opacity .3s}
+.jrow button:hover time,.jrow button:focus-visible time{opacity:1}
+.chnav{display:flex;flex-wrap:wrap;gap:8px;margin:-8px 0 28px}
+.chnav a{text-decoration:none;font-size:14px;padding:10px 14px;border:1px solid var(--rule);color:var(--dim)}
+.chnav a:hover,.chnav a:focus-visible{color:var(--ink);border-color:var(--moss)}
+.phone{background:var(--bg2);border-block:1px solid var(--rule)}
+.phone .in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(28px,5vw,80px);padding-block:clamp(48px,7vw,96px);align-items:center}
+.phone h2{font-size:clamp(34px,4.4vw,54px);margin-bottom:18px}
+.phone p{color:var(--dim);margin:0 0 14px;max-width:58ch}
+.tl{list-style:none;margin:26px 0 0;padding:0;border-left:2px solid var(--rule)}
+.tl li{position:relative;padding:0 0 18px 22px}
+.tl li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--bg2);border:2px solid var(--moss)}
+.tl li.crack::before{border-color:var(--red)}
+.tl b{display:block;font-family:"Familjen Grotesk",sans-serif;font-size:19px;font-weight:600}
+.tl span{color:var(--dim);font-size:15px}
+.fig{position:relative;aspect-ratio:1/1.12;max-width:520px;width:100%;justify-self:center}
+.fig svg{position:absolute;inset:0;width:100%;height:100%}
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(28px,5vw,80px);padding-block:clamp(48px,7vw,96px)}
+.about h2{font-size:clamp(32px,4vw,48px)}
+.roles div{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:16px;padding:14px 0;border-top:1px solid var(--rule)}
+.roles span{color:var(--dim);font-size:15px;white-space:nowrap}
+.roles b{font-weight:600}
+.roles p{margin:2px 0 0;color:var(--dim);font-size:15px}
+.contact{border-top:1px solid var(--rule)}
+.contact .in{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px 60px;padding-block:clamp(48px,6vw,84px);align-items:end}
+.contact h2{font-size:clamp(36px,5vw,64px)}
+.contact p{margin:14px 0 0;font-size:17px;max-width:40ch;color:var(--dim)}
+.links{display:grid;gap:10px}
+.links a{display:flex;justify-content:space-between;gap:16px;align-items:center;min-height:52px;padding:12px 18px;text-decoration:none;font-weight:600;font-size:17px;border:1px solid var(--rule)}
+.links a:hover,.links a:focus-visible{border-color:var(--red);color:var(--red)}
+.links small{font-weight:400;opacity:.85;font-size:14px;overflow-wrap:anywhere;text-align:right}
+footer{padding:22px max(5vw,16px);font-size:13px;color:var(--dim);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+dialog{border:0;padding:0;background:#0b0f0ef2;color:var(--ink);max-width:100vw;max-height:100vh;width:100vw;height:100%}
+dialog::backdrop{background:#000c}
+dialog .box{height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;padding:12px}
+dialog img{width:100%;height:100%;object-fit:contain}
+dialog .bar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;padding:10px 4px 4px;font-size:14px;color:var(--dim)}
+dialog .bar div{display:flex;gap:8px}
+dialog button{min-width:44px;min-height:44px;background:#ffffff14;color:var(--ink);border:1px solid #ffffff30;font:inherit;font-size:18px;cursor:pointer}
+dialog button:hover,dialog button:focus-visible{background:#ffffff2a}
+@media(max-width:760px){.lede,.head,.phone .in,.about,.contact .in{grid-template-columns:minmax(0,1fr)}.hero .ex{display:none}}
+@media(max-width:600px){.wall{columns:1}.hero{height:auto;min-height:0;overflow:visible}.slides{position:relative;height:58svh}.hero::after{display:none}.hero .cap{position:static;padding:22px max(5vw,16px) 0}nav{background:#0b0a0fee}nav div{gap:2px 14px}.roles div{grid-template-columns:minmax(0,1fr);gap:2px}}
+@media(max-width:600px){nav div{flex-wrap:nowrap;overflow-x:auto;width:100%;scrollbar-width:none}nav a{white-space:nowrap;flex:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.print img,.jrow img{transition:none}.scrn,.glitch{animation:none}}
+.roles a{color:inherit;text-decoration:underline;text-decoration-color:var(--moss);text-underline-offset:3px}.roles a:hover,.roles a:focus-visible{color:var(--red);text-decoration-color:var(--red)}
+</style>
+</head>
+<body>
+<nav aria-label="Main">
+  <b>Mahmud Shourov</b>
+  <div><a href="#google">Noticed by Google</a><a href="#work">Photographed</a><a href="#phone">The phone</a><a href="#about">About</a><a href="#contact">Reach</a></div>
+</nav>
+
+<header class="hero">
+  <div class="slides" id="slides">
+    <img class="on" src="img/i203-1440.jpg" alt="A red umbrella glowing against the night by the water" data-c="After dark · Jul 2022">
+    <img src="img/g2-1600.jpg" alt="Sunrise over misty blue hills and fields in Bandarban, seen from a motorcycle" data-c="wild window. · Alikadam, Bandarban · Jul 2024" loading="lazy">
+    <img src="img/i268-1440.jpg" alt="Kids in orange life jackets swimming through a flooded field" data-c="Sunrise · Jan 2022" loading="lazy">
+    <img src="img/iw1-1440.jpg" alt="The sun breaking through cloud over rolling waves" data-c="Golden hour · Dec 2022" loading="lazy">
+    <img src="img/i120-1440.jpg" alt="Black and white: boatmen silhouetted under a long hull on bright water" data-c="Daydream · Mar 2023" loading="lazy">
+    <img src="img/i193-1440.jpg" alt="A dog crossing a rain-soaked street painted with a yellow grid, seen from above" data-c="Rain · Aug 2022" loading="lazy">
+  </div>
+  <div class="cap">
+    <h1>Mahmud Shourov</h1>
+    <p>Visual notes from Bangladesh, shot on a Pixel 4a.</p>
+    <div class="dots" id="dots" role="group" aria-label="Choose photo"></div>
+  </div>
+  <div class="ex" id="ex" aria-live="polite">After dark · Jul 2022</div>
+</header>
+
+<main>
+<section class="wrap lede" aria-label="Introduction">
+  <div>
+    <h2>Visual notes, 2021–2026.</h2>
+    <div class="facts">
+      <div><b>2021–26</b><span>with the same phone</span></div>
+      <div><b>2</b><span>screens replaced to keep it</span></div>
+      <div><b>8</b><span>comments from Google on my work</span></div>
+      <div><b>50</b><span>edited photographs on this page</span></div>
+    </div>
+  </div>
+  <p>Most of these weren't made for a portfolio. They're notes I kept for myself: the ferry home at dusk, a lane after the rain, a hill sky dark enough to show the Milky Way. All of them come from one Pixel 4a, carried everywhere for five years.</p>
+</section>
+
+<section class="wrap sec" id="google" aria-labelledby="h-google">
+  <div class="head">
+    <h2 id="h-google">Noticed by Google</h2>
+    <p>Eight of my Instagram posts tagged #TeamPixel got a reply from @googlepixel or @madebygoogle. Their words appear exactly as they wrote them.</p>
+  </div>
+  <div class="gshow">
+    <div class="pm" aria-label="Instagram posts on a phone">
+      <div class="pm-body">
+        <span class="pm-cam" aria-hidden="true"></span>
+        <div class="pm-scr">
+          <div class="pm-top"><span class="pm-av" aria-hidden="true">M</span><div><b>maaahmudshourov</b><small id="gPlace"></small></div></div>
+          <button class="pm-img" id="gImgs" aria-label="Open photo full size"></button>
+          <div class="pm-cmt"><span class="pm-av g" id="gAv" aria-hidden="true">P</span><p><b id="gWho"></b> <span id="gTxt"></span></p></div>
+        </div>
+      </div>
+    </div>
+    <div class="gside">
+      <p class="gq" id="gQ"></p>
+      <p class="gmeta" id="gMeta"></p>
+      <div class="gctl"><button id="gPrev" aria-label="Previous post">‹</button><span id="gNum" aria-live="polite"></span><button id="gNext" aria-label="Next post">›</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap sec" id="work" aria-labelledby="h-work">
+  <div class="head">
+    <h2 id="h-work">Photographed</h2>
+    <p>From first light to the darkest skies, edited in Lightroom and posted under #TeamPixel. Hover a photo for its date; click for full size.</p>
+  </div>
+  <div class="chnav" role="navigation" aria-label="Chapters"><a href="#c-sun">Sunrise</a><a href="#c-mono">Daydream</a><a href="#c-golden">Golden hour</a><a href="#c-dark">After dark</a><a href="#c-astro">Really dark</a></div>
+  <h3 id="c-sun" style="font-size:clamp(24px,2.6vw,32px);margin:8px 0 16px">Sunrise</h3>
+  <div class="jg" data-set="sun"></div>
+  <h3 id="c-mono" style="font-size:clamp(24px,2.6vw,32px);margin:48px 0 16px">Daydream</h3>
+  <div class="jg" data-set="mono"></div>
+  <h3 id="c-golden" style="font-size:clamp(24px,2.6vw,32px);margin:48px 0 16px">Golden hour</h3>
+  <div class="jg" data-set="golden"></div>
+  <h3 id="c-dark" style="font-size:clamp(24px,2.6vw,32px);margin:48px 0 16px">After dark</h3>
+  <div class="jg" data-set="dark"></div>
+  <h3 id="c-astro" style="font-size:clamp(24px,2.6vw,32px);margin:48px 0 16px">Really dark</h3>
+  <p style="color:var(--dim);margin:-6px 0 16px;max-width:62ch">Pixel astrophotography mode: minutes of stacked exposures on a tripod, far from city light. The Milky Way, a green night glow over the hills, stars through the leaves.</p>
+  <div class="jg" data-set="astro"></div>
+</section>
+
+<section class="phone" id="phone">
+  <div class="wrap in">
+    <div class="fig" aria-hidden="true"><svg id="phoneSvg"></svg></div>
+    <div>
+      <h2>The phone that saw it all</h2>
+      <p>The Pixel 4a went everywhere: ferry decks, metro escalators, hill trails at midnight. When the screen cracked, I fixed it. When it cracked again, I fixed it again. It was never just a phone; it was the notebook for an era of my life and my work.</p>
+      <p>In August 2026 it broke for the third time, and this time I couldn't afford the repair.</p>
+      <ol class="tl">
+        <li><b>2021</b><span>Pixel 4a becomes my only camera</span></li>
+        <li class="crack"><b>Screen breaks</b><span>Repaired, back to shooting</span></li>
+        <li class="crack"><b>Screen breaks again</b><span>Repaired again</span></li>
+        <li class="crack"><b>August 2026</b><span>Broken for good, after five years</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="wrap about" id="about">
+  <div>
+    <h2>Behind the camera</h2>
+    <p style="color:var(--dim);margin:16px 0 0;max-width:40ch">I'm Shourov (Khalad Mahamud). I take visual notes for myself, everywhere I roam. Professionally, I curate cultural events for the community.</p>
+  </div>
+  <div class="roles">
+    <div><span>2021–now</span><div><b><a href="https://www.instagram.com/karkhanastudio" target="_blank" rel="noopener">Karkhana Studio</a></b><p>Co-founder. A cultural event organisation in Dhaka, Bangladesh.</p></div></div>
+    <div><span>2025–now</span><div><b><a href="https://www.instagram.com/breakfastclub.dhaka" target="_blank" rel="noopener">Breakfast Club Dhaka</a></b><p>Experience designer. A morning gathering and pop-culture movement in Dhaka, built around coffee raves, music, community and daytime dance floors.</p></div></div>
+    <div><span>2016–2021</span><div><b><a href="https://10minuteschool.com" target="_blank" rel="noopener">10 Minute School</a></b><p>Project manager and art director, K-12 video and skill development series.</p></div></div>
+    <div><span>Always</span><div><b><a href="https://www.instagram.com/maaahmudshourov" target="_blank" rel="noopener">Photography</a></b><p><a href="https://www.instagram.com/explore/tags/everydayeverywhere/" target="_blank" rel="noopener">#everydayeverywhere</a> <a href="https://www.instagram.com/explore/tags/peoplearoundme/" target="_blank" rel="noopener">#peoplearoundme</a></p></div></div>
+  </div>
+</section>
+</main>
+
+<section class="contact" id="contact">
+  <div class="wrap in">
+    <div>
+      <h2>Reach</h2>
+      <p>For collaborations, commissions, or a word about the pictures.</p>
+    </div>
+    <div class="links">
+      <a href="mailto:mahmudshourov50@gmail.com">Email <small>mahmudshourov50@gmail.com</small></a>
+      <a href="https://wa.me/8801771944458">WhatsApp <small>+88 01771 944458</small></a>
+      <a href="https://www.instagram.com/maaahmudshourov/">Instagram <small>@maaahmudshourov</small></a>
+    </div>
+  </div>
+</section>
+<footer><span>© 2026 Mahmud Shourov. Shot on Google Pixel 4a, edited in Lightroom.</span><span>Dhaka, Bangladesh</span></footer>
+
+<dialog id="lb" aria-label="Photo viewer">
+  <div class="box">
+    <img id="lbImg" alt="">
+    <div class="bar"><span id="lbCap"></span><div><button id="lbPrev" aria-label="Previous photo">‹</button><button id="lbNext" aria-label="Next photo">›</button><button id="lbClose" aria-label="Close">✕</button></div></div>
+  </div>
+</dialog>
+
+<script>
+{
+/* id, title, place, date, account, comment, alt */
+const W=[
+ ['g1','liquid branches.','Uttara, Dhaka','Oct 2024','googlepixel','This perspective has us speechless, Mahmud — beautiful work! 👏','A sunset sky and trees reflected upside down in rippling lake water'],
+ ['g5','chamber of reflection.','Chandpur','Aug 2023','googlepixel','Gorgeous — look at those golden ripples. 😍','Silhouettes behind the amber glass of a boat cabin at sunset over the river'],
+ ['g6','óveður.','Bandarban','Apr 2023','googlepixel',"Fresh air and starry night skies — that's what it's all about, Mahmud! 🤩",'A starry night sky over a forested hill and a hut roof in Bandarban'],
+ ['g3','saturday sun.','Dhaka','Jul 2024','googlepixel','That lighting is phenomenal — great photo, Mahmud!','Late sun throwing bars of gold light across a metro station escalator'],
+ ['g2','wild window.','Alikadam, Bandarban','Jul 2024','googlepixel','You snapped such a peaceful mood here, Mahmud. 🙌','Sunrise over misty blue hills and fields, seen from a motorcycle'],
+ ['g8','sunrise hour.','Dhaka','Feb 2023','googlepixel','We love the way the sun is framed between the light poles — great work, Mahmud!','Black and white: a hazy sun framed in a Y-shaped street light pole, a crow on top'],
+ ['g4','wild blue.','Bangladesh','Mar 2024','madebygoogle',"We're lovin' these moody tones — great photos, Mahmud!",'A square hole in a deep blue wall framing a pink dusk sky and runway'],
+ ['g7','অলস দুপুর // গরম চা','Dhaka','Mar 2023','googlepixel','❤','Afternoon light through curtains and a window strung with prayer flags']
+];
+const tick='<svg width="14" height="14" viewBox="0 0 24 24" aria-label="Verified"><circle cx="12" cy="12" r="11" fill="#3897f0"/><path d="M7 12.5l3.2 3.2L17.5 8.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const bn=s=>/[ঀ-৿]/.test(s)?' class="bn"':'';
+const gI=document.getElementById('gImgs');gI.innerHTML=W.map((w,k)=>`<img class="${k?'':'on'}" src="img/${w[0]}-800.jpg" srcset="img/${w[0]}-800.jpg 800w, img/${w[0]}-1600.jpg 1600w" sizes="320px" alt="${esc(w[6])}" ${k?'loading="lazy"':''}>`).join('');
+const gImgs=[...gI.querySelectorAll('img')];let gi=0,gt=null;
+const gShow=n=>{gImgs[gi].classList.remove('on');gi=(n+W.length)%W.length;gImgs[gi].classList.add('on');const w=W[gi];
+ document.getElementById('gPlace').textContent=w[2];document.getElementById('gWho').innerHTML='@'+w[4]+' '+tick;document.getElementById('gTxt').textContent=w[5];
+ document.getElementById('gAv').textContent=w[4]==='madebygoogle'?'G':'P';document.getElementById('gQ').textContent=w[5]==='❤'?'❤':'“'+w[5]+'”';
+ const m=document.getElementById('gMeta');m.innerHTML=`@${w[4]} on <i${bn(w[1])} style="font-style:normal;color:var(--ink)">${esc(w[1])}</i> · ${w[2]} · ${w[3]}`;
+ document.getElementById('gNum').textContent=(gi+1)+' / '+W.length;};
+const gStill=matchMedia('(prefers-reduced-motion: reduce)').matches;const gRun=()=>{clearInterval(gt);if(!gStill)gt=setInterval(()=>gShow(gi+1),5500)};
+document.getElementById('gPrev').onclick=()=>{gShow(gi-1);gRun()};document.getElementById('gNext').onclick=()=>{gShow(gi+1);gRun()};
+gShow(0);gRun();setTimeout(()=>gImgs.forEach(im=>im.loading='eager'),2000);
+
+const sl=[...document.querySelectorAll('#slides img')],dots=document.getElementById('dots'),ex=document.getElementById('ex');let si=0,timer=null;
+const go=n=>{sl[si].classList.remove('on');si=(n+sl.length)%sl.length;const im=sl[si];im.loading='eager';im.classList.add('on');ex.textContent=im.dataset.c;dots.querySelectorAll('button').forEach((b,k)=>b.setAttribute('aria-current',k===si))};
+dots.innerHTML=sl.map((im,k)=>`<button aria-label="Photo ${k+1}: ${im.dataset.c}" aria-current="${k===0}"></button>`).join('');
+dots.querySelectorAll('button').forEach((b,k)=>b.onclick=()=>{go(k);restart()});
+const still=matchMedia('(prefers-reduced-motion: reduce)').matches;const restart=()=>{clearInterval(timer);if(!still)timer=setInterval(()=>go(si+1),6000)};restart();
+setTimeout(()=>sl.forEach(i=>i.loading='eager'),1500);
+const G={"sun":[["228","2022-05-16",1080,607],["230","2022-05-15",1080,863],["135","2023-01-27",1440,810],["267","2022-01-20",1080,608],["233","2022-05-10",1080,1350],["149","2022-12-31",1440,810],["268","2022-01-20",1440,1152]],"mono":[["118","2023-03-23",1440,1801],["120","2023-03-21",960,640],["285","2021-11-25",1080,863],["199","2022-07-20",1440,1800],["122","2023-03-19",1440,811],["103","2023-06-16",960,640],["215","2022-06-19",1080,720],["74","2023-11-01",1440,1440],["270","2022-01-17",1440,1080]],"golden":[["59","2024-03-25",1169,1169],["55","2024-05-21",1440,1440],["w1","2022-12-13",1440,1440],["93","2023-08-04",1069,1069],["w2","2021-04-25",1440,1440],["387","2021-06-15",1440,1152],["332","2021-09-29",1440,1440],["323","2021-10-06",1440,1440],["128","2023-02-23",1413,940],["190","2022-09-18",1080,1349]],"dark":[["203","2022-07-13",1440,810],["420","2021-04-05",1440,810],["422","2021-04-05",1440,809],["157","2022-12-19",1440,810],["366","2021-07-23",1440,810],["206","2022-07-08",1440,810],["333","2021-09-27",1440,1800],["261","2022-01-22",1080,863],["278","2022-01-06",1080,864]],"astro":[["176","2022-11-07",1440,1800],["174","2022-11-09",1440,1800],["139","2023-01-20",1440,1800],["127","2023-02-24",1440,1800],["419","2021-04-09",1440,1152],["288a","2021-11-17",1080,809],["334","2021-09-27",1440,1800]]};
+const MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const when=d=>MN[+d.slice(5,7)-1]+' '+d.slice(0,4);
+const SETN={sun:'Sunrise',mono:'Daydream',golden:'Golden hour',dark:'After dark',astro:'Really dark'};
+/* one list for the viewer: Google wall first, then every chapter */
+const ALL=W.map(w=>({src:`img/${w[0]}-1600.jpg`,alt:w[6],cap:`${w[1]} ${w[2]}, ${w[3]}. @${w[4]}: "${w[5]}"`}));
+const base={};Object.keys(G).forEach(c=>{base[c]=ALL.length;G[c].forEach(p=>ALL.push({src:`img/i${p[0]}-1440.jpg`,alt:`${SETN[c]}, ${when(p[1])}`,cap:`${SETN[c]} · Pixel 4a · ${when(p[1])}`}))});
+const layout=()=>{document.querySelectorAll('.jg').forEach(el=>{const c=el.dataset.set,P=G[c],Wd=el.clientWidth;if(!Wd)return;
+  const gap=8,big=c==='astro',target=Wd<600?(big?240:170):Wd<900?(big?320:230):(big?440:300);let rows=[],row=[],sum=0;
+  P.forEach((p,i)=>{row.push(i);sum+=p[2]/p[3];if(sum*target+gap*(row.length-1)>=Wd){rows.push([row,sum,true]);row=[];sum=0}});
+  if(row.length){if(row.length===1&&rows.length){const L=rows[rows.length-1];L[0].push(...row);L[1]+=sum}else rows.push([row,sum,false])}
+  el.innerHTML=rows.map(([r,s,full])=>{const h=full?(Wd-gap*(r.length-1))/s:Math.min(target,(Wd-gap*(r.length-1))/s);
+    return '<div class="jrow">'+r.map(i=>{const p=P[i],w=Math.floor(h*p[2]/p[3]);return `<button data-k="${base[c]+i}" style="width:${w}px;height:${Math.round(h)}px" aria-label="Open photo: ${SETN[c]}, ${when(p[1])}"><img src="img/i${p[0]}-720.jpg" srcset="img/i${p[0]}-720.jpg 720w, img/i${p[0]}-1440.jpg 1440w" sizes="${Math.ceil(w)}px" alt="${SETN[c]}, ${when(p[1])}" loading="lazy"><time>${when(p[1])}</time></button>`}).join('')+'</div>'}).join('');});};
+layout();const jro=new ResizeObserver(()=>layout());document.querySelectorAll('.jg').forEach(e=>jro.observe(e));
+const lb=document.getElementById('lb'),li=document.getElementById('lbImg'),lc=document.getElementById('lbCap');
+let cur=0;
+const show=k=>{cur=(k+ALL.length)%ALL.length;const a=ALL[cur];li.src=a.src;li.alt=a.alt;lc.textContent=a.cap;};
+document.addEventListener('click',e=>{const b=e.target.closest('.pm-img,.jrow button');if(!b)return;show(b.id==='gImgs'?gi:+b.dataset.k);try{lb.showModal()}catch(_){lb.setAttribute('open','')}});
+document.getElementById('lbPrev').onclick=()=>show(cur-1);
+document.getElementById('lbNext').onclick=()=>show(cur+1);
+document.getElementById('lbClose').onclick=()=>lb.close();
+lb.addEventListener('click',e=>{if(e.target===lb||e.target.classList.contains('box'))lb.close()});
+lb.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')show(cur-1);if(e.key==='ArrowRight')show(cur+1)});
+
+/* the Pixel 4a, drawn: a cracked screen still showing his Bandarban night sky */
+const s=document.getElementById('phoneSvg');
+const drawPhone=()=>{
+  const Wd=s.clientWidth,H=s.clientHeight;if(!Wd)return;
+  const pw=Math.min(Wd*0.62,H*0.45),ph=pw*2.08,x=(Wd-pw)/2,y=(H-ph)/2,r=pw*0.13,b=pw*0.045;
+  const sx=x+b,sy=y+b,sw=pw-2*b,sh=ph-2*b;
+  const crack=(cx,cy,n,len,seed)=>{let out='',v=seed;const rnd=()=>(v=v*16807%2147483647)/2147483647;
+    for(let i=0;i<n;i++){let a=i/n*Math.PI*2+rnd()*.5,px=cx,py=cy,d='M'+px.toFixed(1)+' '+py.toFixed(1);
+      const steps=3+Math.floor(rnd()*3);for(let j=0;j<steps;j++){a+=(rnd()-.5)*.7;const l=len*(.25+rnd()*.35);px+=Math.cos(a)*l;py+=Math.sin(a)*l;d+=' L'+px.toFixed(1)+' '+py.toFixed(1)}
+      out+=`<path d="${d}"/>`}return out};
+  s.innerHTML=`<defs><clipPath id="scr"><rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="${r*.75}"/></clipPath>
+  <linearGradient id="body" x1="0" x2="1"><stop offset="0" stop-color="#24212c"/><stop offset="1" stop-color="#0a090d"/></linearGradient>
+  <linearGradient id="glare" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+  <ellipse cx="${Wd/2+pw*.12}" cy="${y+ph+H*.035}" rx="${pw*.62}" ry="${pw*.06}" fill="#000" opacity=".45"/>
+  <rect x="${x}" y="${y}" width="${pw}" height="${ph}" rx="${r}" fill="url(#body)" stroke="#34303f" stroke-width="1.5"/>
+  <g clip-path="url(#scr)"><rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" fill="#020203"/><g class="scrn"><image href="img/g6-800.jpg" x="${sx}" y="${sy}" width="${sw}" height="${sh}" preserveAspectRatio="xMidYMid slice"/>
+  <rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" fill="url(#glare)"/></g>
+  <rect class="glitch" x="${sx}" y="${sy+sh*.22}" width="${sw}" height="${sh*.05}" fill="#b9a6ff" opacity="0" style="mix-blend-mode:screen"/>
+  <g fill="none" stroke="#f4f6f2" stroke-opacity=".85" stroke-width="1.2" stroke-linecap="round">${crack(sx+sw*.66,sy+sh*.3,9,sw*.55,7)}${crack(sx+sw*.28,sy+sh*.74,7,sw*.45,31)}</g>
+  <g fill="none" stroke="#000" stroke-opacity=".35" stroke-width="2.4" transform="translate(1 1)">${crack(sx+sw*.66,sy+sh*.3,9,sw*.55,7)}</g></g>
+  <circle cx="${sx+sw*.14}" cy="${sy+sw*.14}" r="${pw*.035}" fill="#050606" stroke="#2e3633"/>
+  <rect x="${x+pw}" y="${y+ph*.22}" width="${pw*.018}" height="${ph*.09}" rx="2" fill="#34303f"/>`;
+};
+const ro=new ResizeObserver(drawPhone);ro.observe(s);
+}
+</script>
+</body>
+</html>
