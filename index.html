@@ -152,12 +152,12 @@ dialog button:hover,dialog button:focus-visible{background:#ffffff2a}
 
 <header class="hero">
   <div class="slides" id="slides">
-    <img class="on" src="img/i203-1440.jpg" alt="A red umbrella glowing against the night by the water" data-c="After dark · Jul 2022">
-    <img src="img/g2-1600.jpg" alt="Sunrise over misty blue hills and fields in Bandarban, seen from a motorcycle" data-c="wild window. · Alikadam, Bandarban · Jul 2024" loading="lazy">
-    <img src="img/i268-1440.jpg" alt="Kids in orange life jackets swimming through a flooded field" data-c="Sunrise · Jan 2022" loading="lazy">
-    <img src="img/iw1-1440.jpg" alt="The sun breaking through cloud over rolling waves" data-c="Golden hour · Dec 2022" loading="lazy">
-    <img src="img/i120-1440.jpg" alt="Black and white: boatmen silhouetted under a long hull on bright water" data-c="Daydream · Mar 2023" loading="lazy">
-    <img src="img/i193-1440.jpg" alt="A dog crossing a rain-soaked street painted with a yellow grid, seen from above" data-c="Rain · Aug 2022" loading="lazy">
+    <img class="on" src="i203-1440.jpg" alt="A red umbrella glowing against the night by the water" data-c="After dark · Jul 2022">
+    <img src="g2-1600.jpg" alt="Sunrise over misty blue hills and fields in Bandarban, seen from a motorcycle" data-c="wild window. · Alikadam, Bandarban · Jul 2024" loading="lazy">
+    <img src="i268-1440.jpg" alt="Kids in orange life jackets swimming through a flooded field" data-c="Sunrise · Jan 2022" loading="lazy">
+    <img src="iw1-1440.jpg" alt="The sun breaking through cloud over rolling waves" data-c="Golden hour · Dec 2022" loading="lazy">
+    <img src="i120-1440.jpg" alt="Black and white: boatmen silhouetted under a long hull on bright water" data-c="Daydream · Mar 2023" loading="lazy">
+    <img src="i193-1440.jpg" alt="A dog crossing a rain-soaked street painted with a yellow grid, seen from above" data-c="Rain · Aug 2022" loading="lazy">
   </div>
   <div class="cap">
     <h1>Mahmud Shourov</h1>
@@ -293,7 +293,7 @@ const W=[
 const tick='<svg width="14" height="14" viewBox="0 0 24 24" aria-label="Verified"><circle cx="12" cy="12" r="11" fill="#3897f0"/><path d="M7 12.5l3.2 3.2L17.5 8.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const bn=s=>/[ঀ-৿]/.test(s)?' class="bn"':'';
-const gI=document.getElementById('gImgs');gI.innerHTML=W.map((w,k)=>`<img class="${k?'':'on'}" src="img/${w[0]}-800.jpg" srcset="img/${w[0]}-800.jpg 800w, img/${w[0]}-1600.jpg 1600w" sizes="320px" alt="${esc(w[6])}" ${k?'loading="lazy"':''}>`).join('');
+const gI=document.getElementById('gImgs');gI.innerHTML=W.map((w,k)=>`<img class="${k?'':'on'}" src="${w[0]}-800.jpg" srcset="${w[0]}-800.jpg 800w, ${w[0]}-1600.jpg 1600w" sizes="320px" alt="${esc(w[6])}" ${k?'loading="lazy"':''}>`).join('');
 const gImgs=[...gI.querySelectorAll('img')];let gi=0,gt=null;
 const gShow=n=>{gImgs[gi].classList.remove('on');gi=(n+W.length)%W.length;gImgs[gi].classList.add('on');const w=W[gi];
  document.getElementById('gPlace').textContent=w[2];document.getElementById('gWho').innerHTML='@'+w[4]+' '+tick;document.getElementById('gTxt').textContent=w[5];
@@ -315,14 +315,14 @@ const MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec
 const when=d=>MN[+d.slice(5,7)-1]+' '+d.slice(0,4);
 const SETN={sun:'Sunrise',mono:'Daydream',golden:'Golden hour',dark:'After dark',astro:'Really dark'};
 /* one list for the viewer: Google wall first, then every chapter */
-const ALL=W.map(w=>({src:`img/${w[0]}-1600.jpg`,alt:w[6],cap:`${w[1]} ${w[2]}, ${w[3]}. @${w[4]}: "${w[5]}"`}));
-const base={};Object.keys(G).forEach(c=>{base[c]=ALL.length;G[c].forEach(p=>ALL.push({src:`img/i${p[0]}-1440.jpg`,alt:`${SETN[c]}, ${when(p[1])}`,cap:`${SETN[c]} · Pixel 4a · ${when(p[1])}`}))});
+const ALL=W.map(w=>({src:`${w[0]}-1600.jpg`,alt:w[6],cap:`${w[1]} ${w[2]}, ${w[3]}. @${w[4]}: "${w[5]}"`}));
+const base={};Object.keys(G).forEach(c=>{base[c]=ALL.length;G[c].forEach(p=>ALL.push({src:`i${p[0]}-1440.jpg`,alt:`${SETN[c]}, ${when(p[1])}`,cap:`${SETN[c]} · Pixel 4a · ${when(p[1])}`}))});
 const layout=()=>{document.querySelectorAll('.jg').forEach(el=>{const c=el.dataset.set,P=G[c],Wd=el.clientWidth;if(!Wd)return;
   const gap=8,big=c==='astro',target=Wd<600?(big?240:170):Wd<900?(big?320:230):(big?440:300);let rows=[],row=[],sum=0;
   P.forEach((p,i)=>{row.push(i);sum+=p[2]/p[3];if(sum*target+gap*(row.length-1)>=Wd){rows.push([row,sum,true]);row=[];sum=0}});
   if(row.length){if(row.length===1&&rows.length){const L=rows[rows.length-1];L[0].push(...row);L[1]+=sum}else rows.push([row,sum,false])}
   el.innerHTML=rows.map(([r,s,full])=>{const h=full?(Wd-gap*(r.length-1))/s:Math.min(target,(Wd-gap*(r.length-1))/s);
-    return '<div class="jrow">'+r.map(i=>{const p=P[i],w=Math.floor(h*p[2]/p[3]);return `<button data-k="${base[c]+i}" style="width:${w}px;height:${Math.round(h)}px" aria-label="Open photo: ${SETN[c]}, ${when(p[1])}"><img src="img/i${p[0]}-720.jpg" srcset="img/i${p[0]}-720.jpg 720w, img/i${p[0]}-1440.jpg 1440w" sizes="${Math.ceil(w)}px" alt="${SETN[c]}, ${when(p[1])}" loading="lazy"><time>${when(p[1])}</time></button>`}).join('')+'</div>'}).join('');});};
+    return '<div class="jrow">'+r.map(i=>{const p=P[i],w=Math.floor(h*p[2]/p[3]);return `<button data-k="${base[c]+i}" style="width:${w}px;height:${Math.round(h)}px" aria-label="Open photo: ${SETN[c]}, ${when(p[1])}"><img src="i${p[0]}-720.jpg" srcset="i${p[0]}-720.jpg 720w, i${p[0]}-1440.jpg 1440w" sizes="${Math.ceil(w)}px" alt="${SETN[c]}, ${when(p[1])}" loading="lazy"><time>${when(p[1])}</time></button>`}).join('')+'</div>'}).join('');});};
 layout();const jro=new ResizeObserver(()=>layout());document.querySelectorAll('.jg').forEach(e=>jro.observe(e));
 const lb=document.getElementById('lb'),li=document.getElementById('lbImg'),lc=document.getElementById('lbCap');
 let cur=0;
@@ -349,7 +349,7 @@ const drawPhone=()=>{
   <linearGradient id="glare" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
   <ellipse cx="${Wd/2+pw*.12}" cy="${y+ph+H*.035}" rx="${pw*.62}" ry="${pw*.06}" fill="#000" opacity=".45"/>
   <rect x="${x}" y="${y}" width="${pw}" height="${ph}" rx="${r}" fill="url(#body)" stroke="#34303f" stroke-width="1.5"/>
-  <g clip-path="url(#scr)"><rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" fill="#020203"/><g class="scrn"><image href="img/g6-800.jpg" x="${sx}" y="${sy}" width="${sw}" height="${sh}" preserveAspectRatio="xMidYMid slice"/>
+  <g clip-path="url(#scr)"><rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" fill="#020203"/><g class="scrn"><image href="g6-800.jpg" x="${sx}" y="${sy}" width="${sw}" height="${sh}" preserveAspectRatio="xMidYMid slice"/>
   <rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" fill="url(#glare)"/></g>
   <rect class="glitch" x="${sx}" y="${sy+sh*.22}" width="${sw}" height="${sh*.05}" fill="#b9a6ff" opacity="0" style="mix-blend-mode:screen"/>
   <g fill="none" stroke="#f4f6f2" stroke-opacity=".85" stroke-width="1.2" stroke-linecap="round">${crack(sx+sw*.66,sy+sh*.3,9,sw*.55,7)}${crack(sx+sw*.28,sy+sh*.74,7,sw*.45,31)}</g>
